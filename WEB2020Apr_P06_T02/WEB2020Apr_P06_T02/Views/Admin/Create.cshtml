@@ -1,0 +1,93 @@
+﻿@model WEB2020Apr_P06_T02.Models.Staff
+
+@{
+    ViewData["Title"] = "Lion City | Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Create Flight Personnel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StaffName" class="control-label"></label>
+                <input asp-for="StaffName" class="form-control" />
+                <span asp-validation-for="StaffName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <br />
+                <label class="form-check-inline">
+                    <input asp-for="Gender" type="radio" value="M"
+                           checked class="form-check-input" />
+                    <span>M</span>
+                </label>
+                <label class="form-check-inline">
+                    <input asp-for="Gender" type="radio" value="F"
+                           class="form-check-input" />
+                    <span>F</span>
+                </label>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateEmployed" class="control-label"></label>
+                <input asp-for="DateEmployed" class="form-control" />
+                <span asp-validation-for="DateEmployed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vocation" class="control-label"></label>
+                <br />
+                <label class="form-check-inline">
+                    <input asp-for="Vocation" type="radio" value="Pilot"
+                           checked class="form-check-input" />
+                    <span>Pilot</span>
+                </label>
+                <label class="form-check-inline">
+                    <input asp-for="Vocation" type="radio" value="Adminstrator"
+                           class="form-check-input" />
+                    <span>Administrator</span>
+                </label>
+                <label class="form-check-inline">
+                    <input asp-for="Vocation" type="radio" value="FlightAttendant"
+                           class="form-check-input" />
+                    <span>Flight Attendant</span>
+                </label>
+                <span asp-validation-for="Vocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" pattern=".{6,}" required title="Minimum 6 characters"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <br />
+                <label class="form-check-inline">
+                    <input asp-for="Status" type="radio" value="Active"
+                           checked class="form-check-input" />
+                    <span>Active</span>
+                </label>
+                <label class="form-check-inline">
+                    <input asp-for="Status" type="radio" value="inactive"
+                           class="form-check-input" />
+                    <span>Inactive</span>
+                </label>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="~/Home/StaffMain">Back</a>
+</div>

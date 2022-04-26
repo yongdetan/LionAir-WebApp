@@ -1,0 +1,56 @@
+﻿@model WEB2020Apr_P06_T02.Models.ScheduleView
+@{
+    ViewData["Title"] = "Create Schedule";
+}
+
+<h4 class="pageTitle">Create Flight Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateSchedule">
+            <div class="form-group">
+                <label asp-for="FlightNumber" class="control-label" required></label>
+                <input asp-for="FlightNumber" class="form-control" />
+                <span asp-validation-for="FlightNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RouteId" class="control-label" required></label>
+                <select asp-for="RouteId"
+                        asp-items="@(new SelectList(
+ @ViewData["frList"] as List <FlightRoute>,
+ "RouteId","RouteId"))" class="form-control"></select>
+                <span asp-validation-for="RouteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AircraftId" class="control-label"></label>
+                <input asp-for="AircraftId" class="form-control" />
+                <span asp-validation-for="AircraftId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDateTime" class="control-label" required></label>
+                <input asp-for="DepartureDateTime" class="form-control" />
+                <span asp-validation-for="DepartureDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EconomyClassPrice" class="control-label" required></label>
+                <input asp-for="EconomyClassPrice" class="form-control" />
+                <span asp-validation-for="EconomyClassPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusinessClassPrice" class="control-label" required></label>
+                <input asp-for="BusinessClassPrice" class="form-control" />
+                <span asp-validation-for="BusinessClassPrice" class="text-danger"></span>
+                <span class="text-danger"> @TempData["Error"]</span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model WEB2020Apr_P06_T02.Models.Staff
+@{
+    ViewData["Status"] = "Edit";
+
+}
+
+<h4 class="PageTitle">Edit Personnel Status</h4>
+<hr />
+<form asp-action="EditStatus">
+    <fieldset class="FormContent">
+        <div class="form-group row">
+            <label asp-for="StaffId"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input asp-for="StaffId" readonly
+                       class="form-control-plaintext" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="StaffName"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input asp-for="StaffName" readonly
+                       class="form-control-plaintext" />
+            </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Status"
+                       class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 col-md-5">
+                    <!-- Drop-down list displaying Branch Address,
+            with Branch Number as returned value -->
+                    <select asp-for="Status"
+                            asp-items="@ViewData["perSstatus"] as List <SelectListItem>" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-9 offset-sm-3">
+                    <input type="submit" value="Update"
+                           class="btn btn-primary" />
+                </div>
+            </div>
+            <div>
+                <a href="~/Admin/Viewpersonnel">Back</a>
+            </div>
+</fieldset>
+</form>
+

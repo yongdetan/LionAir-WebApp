@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WEB2020Apr_P06_T02.Models.FlightViewModel>
+
+@{
+    ViewData["Title"] = "Lion City Airlines | Flight Results";
+}
+
+<br />
+<h1>@TempData["DepartureCountry"] to @TempData["ArrivalCountry"]</h1>
+<hr />
+<h4>Flight Results</h4>
+@if (Model != null)
+{
+    <div class="table-responsive">
+        <table id="search" class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure DateTime</th>
+                    <th>Economy Class Price</th>
+                    <th>Business Class Price</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FlightRoute.DepartureCity</td>
+                        <td>@item.FlightRoute.ArrivalCity</td>
+                        <td>@item.FlightSchedule.DepartureDateTime</td>
+                        <td>@item.FlightSchedule.EconomyClassPrice</td>
+                        <td>@item.FlightSchedule.BusinessClassPrice</td>
+                        <td>@item.FlightSchedule.Status</td>
+                        @if (item.FlightSchedule.Status == "Opened")
+                        {
+                            if (Context.Session.GetString("Role") != null)
+                            {
+                                if (Context.Session.GetString("Role") == "Customer" && (item.FlightSchedule.DepartureDateTime - DateTime.Now).TotalDays > 1)
+                                {
+                                    <td>
+                                        <a asp-action="Book" asp-controller="Customer"
+                                           asp-route-id="@item.FlightSchedule.ScheduleId">Book</a>
+                                    </td>
+                                }
+                            }
+                            else
+                            {
+                                <td>Please sign in to book</td>
+                            }
+
+                        }
+                        else
+                        {
+                            <td>No bookings allowed</td>
+                        }
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <span style="color:red">No record found!</span>
+}

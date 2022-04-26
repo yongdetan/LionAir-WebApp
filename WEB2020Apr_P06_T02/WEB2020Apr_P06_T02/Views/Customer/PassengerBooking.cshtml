@@ -1,0 +1,34 @@
+﻿@model WEB2020Apr_P06_T02.Models.FlightViewModel
+@{
+    ViewData["Title"] = "Member's Area | Passenger Booking Details";
+}
+
+<h1>Booking ID: @TempData["bookingID"]</h1>
+<hr />
+<br />
+
+<h3>@Model.FlightRoute.DepartureCity-@Model.FlightRoute.DepartureCountry to @Model.FlightRoute.ArrivalCity-@Model.FlightRoute.ArrivalCountry</h3>
+<hr style="width:55%;text-align:left;margin-left:0"/>
+<!--Create a horizontal line to separate information-->
+<p>Flight: @Model.FlightSchedule.FlightNumber</p>
+<p>Departure Date: @Model.FlightSchedule.DepartureDateTime.ToString("dddd, dd MMMM yyyy")</p>
+<p>Boarding Time: @Model.FlightSchedule.DepartureDateTime.ToString("hh:mm tt")</p>
+<p>Travel Duration: @Model.FlightRoute.FlightDuration hour(s)</p>
+<!--Close horizontal line-->
+<hr style="width:55%;text-align:left;margin-left:0" />
+
+<br />
+
+<h4>Passenger Information</h4>
+<hr style="width:25%;text-align:left;margin-left:0"/>
+@foreach (var details in Model.Booking)
+{
+    <p>Passenger Name: @details.PassengerName</p>
+    <p>Nationality: @details.Nationality</p>
+    <p>Passport Number: @details.PassportNumber</p>
+    <p>Seat Class: @details.SeatClass class</p>
+    <p>Remarks: @details.Remarks</p>
+    <p>Amount Paid: @details.AmtPayable</p>
+    <p>Booked at: @details.DateTimeCreated</p>
+}
+<hr style="width:25%;text-align:left;margin-left:0" />

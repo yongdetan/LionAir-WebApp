@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Lion City Airlines | Login";
+}
+
+<br />
+<h1 class="PageTitle">Lion City Airlines Login Page</h1>
+<hr />
+<div class="container" id="mainContainer">
+    <div class="flex-container">
+        <div>
+            <form method="post" action="~/Home/Login">
+                <fieldset class="loginFieldset">
+                    <label for="txtLoginID">Email Address:</label><br />
+                    <input type="email" name="txtLoginID" placeholder="Enter Email Address"
+                           id="txtLoginID" required /><br />
+                    <label for="txtPassword">Password:</label><br />
+                    <input type="password" name="txtPassword" placeholder="Enter Password"
+                           id="txtPassword"
+                           required /><br />
+                    <input type="submit" id="btnLogin"
+                           class="myButton" value="Login" />
+                    <br />
+                    <span style="color:red;">@TempData["Message"]</span>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

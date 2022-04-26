@@ -1,0 +1,96 @@
+﻿@model WEB2020Apr_P06_T02.Models.FlightViewModel
+@{
+    ViewData["Title"] = "Member's Area | Booking";
+}
+
+<br />
+<h4 class="PageTitle">Booking</h4>
+<hr />
+<!-- Flight Details on the right -->
+<div style="float: right;">
+    <p><strong>Flight Details</strong></p>
+    <hr />
+    <p>@Model.FlightRoute.DepartureCity-@Model.FlightRoute.DepartureCountry to @Model.FlightRoute.ArrivalCity-@Model.FlightRoute.ArrivalCountry</p>
+    <p>Flight: @Model.FlightSchedule.FlightNumber</p>
+    <p>Departure Date: @Model.FlightSchedule.DepartureDateTime.ToString("dddd, dd MMMM yyyy")</p>
+    <p>Boarding Time: @Model.FlightSchedule.DepartureDateTime.ToString("hh:mm tt")</p>
+    <p>Travel Duration: @Model.FlightRoute.FlightDuration hour(s)</p>
+    <p>Economy Class Price: $@Model.FlightSchedule.EconomyClassPrice</p>
+    <p>Business Class Price: $@Model.FlightSchedule.BusinessClassPrice</p>
+    <hr />
+</div>
+
+<!-- Passenger details input on the left -->
+<form asp-action="Book">
+    <fieldset class="FormContent">
+        @for (int x = 0; x < Context.Session.GetInt32("passengerNo"); x++)
+        {
+            <div class="form-group row">
+                <label asp-for="Booking[x].PassengerName"
+                       class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 col-md-5">
+                    <input asp-for="Booking[x].PassengerName" class="form-control" />
+                    <span asp-validation-for="Booking[x].PassengerName"
+                          class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Booking[x].PassportNumber"
+                       class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 col-md-5">
+                    <input asp-for="Booking[x].PassportNumber" class="form-control" />
+                    <span asp-validation-for="Booking[x].PassportNumber"
+                          class="text-danger"></span>
+                    <span style="color:red;">@TempData["PassportExist"]</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Booking[x].Nationality"
+                       class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 col-md-5">
+                    <input asp-for="Booking[x].Nationality" class="form-control" />
+                    <span asp-validation-for="Booking[x].Nationality"
+                          class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Booking[x].SeatClass"
+                       class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 col-md-5">
+                    <div class="form-group form-check-inline">
+                        <label class="col-form-label">
+                            <input asp-for="Booking[x].SeatClass" type="radio" value="Economy"
+                                   checked class="form-check-input" />
+                            <span>Economy</span>
+                        </label>
+                        <label class="col-form-label">
+                            <input asp-for="Booking[x].SeatClass" type="radio" value="Business"
+                                   class="form-check-input" />
+                            <span>Business</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Booking[x].Remarks"
+                       class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9 col-md-5">
+                    <input asp-for="Booking[x].Remarks" class="form-control" />
+                    <span asp-validation-for="Booking[x].Remarks"
+                          class="text-danger"></span>
+                </div>
+            </div>
+
+        }
+        <div class="form-group row">
+            <div class="col-sm-9 offset-sm-3">
+                <input type="submit" value="Book"
+                       class="btn btn-primary" />
+            </div>
+        </div>
+        <div>
+            <a href="javascript: history.go(-1)">Back to Flight Schedule</a>
+        </div>
+    </fieldset>
+</form>

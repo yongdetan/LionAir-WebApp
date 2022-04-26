@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WEB2020Apr_P06_T02.Models.FlightViewModel>
+@{
+    ViewData["Title"] = "Member's Area | Home";
+}
+
+<br />
+<h1>My Bookings</h1>
+<hr />
+<div class="table-responsive">
+    <table id="viewBookings" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Departure Datetime</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Booking No.</th>
+                <th>Passenger Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.FlightSchedule.DepartureDateTime</td>
+                <td>@item.FlightRoute.DepartureCity</td>
+                <td>@item.FlightRoute.ArrivalCity</td>
+                @foreach (var booking in item.Booking)
+                {
+                    <td>@booking.BookingId</td>
+                    <td>@booking.PassengerName</td>
+                    <td>
+                        <a asp-action="PassengerBooking" asp-controller="Customer"
+                           asp-route-id="@booking.BookingId">View</a>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

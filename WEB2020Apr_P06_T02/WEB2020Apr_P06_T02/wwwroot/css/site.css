@@ -1,0 +1,159 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #000000;
+    
+}
+
+
+.button {
+    background: none;
+    color: black;
+    width: 80px;
+    height: 40px;
+    border: 1px solid black;
+    font-size: 18px;
+    border-radius: 2px;
+    transition: .6s;
+    overflow: hidden;
+}
+.button:focus {
+    outline: none;
+}
+
+.button:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,.5);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+.button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,.2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-130px) scaleX(-150deg);
+}
+
+.button:hover {
+    background: darkgrey;
+    color:black;
+    cursor: pointer;
+}
+
+.button:hover:before{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+
+}
+
+.button:hover:after {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}
+
+
+/*.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}*/
+
+
+.nav-link {
+    color: #66FCF1;
+    border-color: hotpink;
+}
+.nav-pills {
+    color: #66FCF1;
+    border-color: hotpink;
+}
+
+.nav-link.active {
+    color: #66FCF1;
+    border-color: hotpink;
+}
+
+.nav-pills.show {
+    color: #66FCF1;
+    border-color: hotpink;
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.container{
+    color:black;
+}
+.search {
+    color: black;
+    float: left;
+    margin-right: 40px;
+}
+
+
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+  
+}
+
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    color: rgba(255,255,255,.5);
+}
+
+
+

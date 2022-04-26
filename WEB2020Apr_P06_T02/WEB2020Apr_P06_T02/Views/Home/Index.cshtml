@@ -1,0 +1,51 @@
+﻿@model WEB2020Apr_P06_T02.Models.FlightRoute
+@{
+    ViewData["Title"] = "Lion City Airlines | Search Flights";
+    Layout = "_Layout";
+}
+
+<br />
+    <center><h1>Where would you like to go?</h1></center>
+<hr />
+    <br />
+    
+    <form asp-controller="Home" asp-action="Search" method="post" class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="row">
+                    <div class="search">
+                        <label asp-for="DepartureCountry" style="font-size:20px;">From</label>
+                        <select id="DepartureCountry"
+                                style=" height:40px; font-size:20px;"
+                                asp-for="DepartureCountry"
+                                asp-items="@ViewData["Countries"]
+                                    as List<SelectListItem>"></select>
+                    </div>
+                    <div class="search">
+                        <label asp-for="ArrivalCountry" style="font-size:20px;">To</label>
+                        <select id="ArrivalCountry"
+                                style=" height:40px; font-size:20px;"
+                                asp-for="ArrivalCountry"
+                                asp-items="@ViewData["Countries"]
+                                    as List<SelectListItem>"></select>
+                    </div>
+                    <div class="search">
+                        <label for="PassengerNo" style="font-size:20px;">Number of Passengers:</label>
+                        <input type="number" name="PassengerNo" style=" height:40px; font-size:20px;"
+                               id="PassengerNo" required />
+                    </div>
+                    <div style="float: left;">
+                        <input class="button" type="submit" style="height:40px; float:right;">
+                    </div>
+                </div>
+
+                <br />
+
+
+                <span style="font-size:20px; color:red;">@TempData["Message"]</span>
+            </div>
+            
+    </form>
+    
+    <br />
+    <hr />
+

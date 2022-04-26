@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WEB2020Apr_P06_T02.Models.ScheduleView>
+
+@if (Model.ToList().Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewSchedule" class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Schedule ID</th>
+                    <th>Flight Number</th>
+                    <th>Route ID</th>
+                    <th>Aircraft ID</th>
+                    <th>Departure Date & Time</th>
+                    <th>Arrival Date & Time</th>
+                    <th>Economy Class Price</th>
+                    <th>Business Class Price</th>
+                    <th>Status</th>
+                    <th>Number of Tickets Booked</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ScheduleId.ToString()</td>
+                        <td>@item.FlightNumber</td>
+                        <td>@item.RouteId</td>
+                        <td>@item.AircraftId</td>
+                        <td>@item.DepartureDateTime</td>
+                        <td>@item.ArrivalDateTime</td>
+                        <td>@item.EconomyClassPrice</td>
+                        <td>@item.BusinessClassPrice</td>
+                        <td>@item.Status</td>
+                        <td>@item.Ticket</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Schedule"
+                               asp-route-id="@item.ScheduleId">Update</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <span style="color:red">No record found!</span>
+}

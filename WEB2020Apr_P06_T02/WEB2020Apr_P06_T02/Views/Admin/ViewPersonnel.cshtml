@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WEB2020Apr_P06_T02.Models.PersonnelViewModel>
+
+@{
+    ViewData["Title"] = "View Flight Personnel";
+}
+
+
+<h1>View All Flight Personnel</h1>
+
+<div class="table-responsive">
+    <table id="viewPersonnel" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Schedule</th>
+                <th>Staff ID</th>
+                <th>Staff Name</th>
+                <th>Gender</th>
+                <th>Date Employed</th>
+                <th>Vocation</th>
+                <th>Emaill Address</th>
+                <th>Password</th>
+                <th>Status</th>
+                <th>Edit Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ScheduleID</td>
+                        <td>@item.StaffId</td>
+                        <td>@item.StaffName</td>
+                        <td>@item.Gender</td>
+                        <td>@item.DateEmployed</td>
+                        <td>@item.Vocation</td>
+                        <td>@item.Email</td>
+                        <td>@item.Password</td>
+                        <td>@item.Status</td>
+                        <td><a asp-action="EditStatus" asp-controller="Admin"
+                               asp-route-id="@item.StaffId">Update</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a href="~/Home/StaffMain">Back</a>
+</div>

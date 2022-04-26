@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WEB2020Apr_P06_T02.Models.UpdateStatusViewModel>
+
+@{
+    ViewData["Title"] = "Update Status";
+}
+
+<br />
+<h1>Update Flight Personnel Status</h1>
+<hr />
+<div class="table-responsive">
+    <table id="search" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Staff ID</th>
+                <th>Staff Name</th>
+                <th>Gender</th>
+                <th>Vocation</th>
+                <th>Emaill Address</th>
+                <th>Status</th>
+                <th>Change Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>@item.StaffId</td>
+                <td>@item.StaffName</td>
+                <td>@item.Gender</td>
+                <td>@item.Vocation</td>
+                <td>@item.Email</td>
+                <td>@item.Status</td>
+                <td align="center">
+                    <select>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </td>
+            </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</div>
+
+<div>
+    <a href="~/Home/StaffMain">Back</a>
+</div>

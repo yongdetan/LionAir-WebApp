@@ -1,0 +1,61 @@
+﻿@model WEB2020Apr_P06_T02.Models.AssignViewModel
+@{
+    ViewData["Title"] = "View Route and Schedule";
+}
+<h4 class="PageTitle">View Schedule</h4>
+<!-- Display a list of RouteID -->
+<div class="table-responsive">
+    <table id="viewSchedule" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Schedule ID</th>
+                <th>Flight Number</th>
+                <th>Statue</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.FlightScheduleList)
+            {
+                string selectedRow = "";
+                if (ViewData["selectedScheduleId"].ToString()
+                 == item.RouteId.ToString())
+                {
+                    // Highlight the selected row
+                    selectedRow = "class='table-primary'";
+                }
+                <tr @Html.Raw(selectedRow)>
+                    <td>@item.ScheduleId</td>
+                    <td>@item.FlightNumber</td>
+                    <td>@item.Status</td>
+
+                    <td>
+                        <a asp-action="AssignView" asp-controller="Admin"
+                           asp-route-id="@item.ScheduleId">View Crew</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- Display a list of Schedule ID for each RouteID -->
+@if (ViewData["selectedScheduleId"].ToString() != "")
+{
+    if (Model.FlightCrewList.Count != 0)
+    {
+        <h5>
+            Flight Crew in ScheduleID
+            @ViewData["selectedScheduleId"].ToString() :
+        </h5>
+        <partial name="~/Views/Admin/_ViewFlightCrew.cshtml"
+                 model="@Model" />
+    }
+    else
+    {
+        <h5>NO FLIGHT CREW!</h5>
+    }
+}
+<div>
+    <a href="~/Home/StaffMain">Back</a>
+</div>
+
